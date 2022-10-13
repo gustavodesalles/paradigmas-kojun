@@ -8,6 +8,10 @@ type GradeValores = Matriz Int
 type GradeRegioes = Matriz Char
 type Matriz a = [Linha a]
 type Linha a = [a]
+type Value = Int
+
+values :: a -> [Value]
+value a = [1..obterTamanhoRegiao a]
 
 --cria uma lista de tuplas correspondentes ao valor e à região
 --de cada célula
@@ -21,6 +25,14 @@ matrizValoresRegioes= zipWith zip
 --obtém as linhas da matriz
 linhas :: Matriz a -> [Linha a]
 linhas = id 
+
+--obtém valor da regiao escolhida
+obterRegiaoEscolhida :: (Int, Char) -> Char
+obterRegiaoEscolhida (_, b) = b
+
+--obtém valor numérico da tupla
+obterValorEscolhido :: (Int, Char) -> Char
+obterValorEscolhido (a, _) = a
 
 --obtém as colunas da matriz por meio de transposição
 colunas :: Matriz a -> [Linha a]

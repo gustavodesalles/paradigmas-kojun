@@ -1,6 +1,7 @@
 module Resolvedor where
 import Tabuleiro
 
+type Choices = [Value]
 --o tabuleiro será válido se:
 --1: Nenhuma célula vizinha (horizontal e vertical) possuir os mesmos valores;
 --2: A ordem vertical dos valores de uma região seja decrescente.
@@ -22,3 +23,20 @@ ordemDecrescente [_] = True
 ordemDecrescente (x:xs)
     | (x > head xs) = ordemDecrescente xs 
     | otherwise = False
+
+-- ____________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+choices :: [(Int, Char)] -> Matrix Choices
+choices = map (map choices)
+    where
+        choice v = if (obterValorEscolhido v) == 0 then values (obterRegiaoEscolhida v) else [obterValorEscolhido v] 
+
+cp :: [[a]] -> [[a]]
+cp [] = [[]]
+cp (xs:xss) = [y:ys | y <- xs, ys <- cp xss]
+
+collapse :: Matrix [a] -> [Matrix a]
+collapse = cp . map cp
+
+solve :: GradeValores -> GradeRegioes -> [GradeValores]
+solve valores regioes = filter (valido (collapse (choices)), regioes)

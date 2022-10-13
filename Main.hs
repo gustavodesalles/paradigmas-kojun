@@ -5,3 +5,4 @@ import Tabuleiro
 
 main = do
   -- print (imprimir exemplo1valores)
+  putStrLn(solve )
