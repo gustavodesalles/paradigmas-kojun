@@ -7,14 +7,18 @@ import Tabuleiro
 valido :: GradeValores -> GradeRegioes -> Bool 
 valido valores regioes = all vizinhosDiferentes (linhas valores) && all vizinhosDiferentes (colunas valores) && all ordemDecrescente (colunas (matrizValoresRegioes valores regioes))
 
---verifica se os vizinhos possuem valores diferentes (incompleta)
+--verifica se os vizinhos possuem valores diferentes (incompleta ?)
 vizinhosDiferentes :: Eq a => [a] -> Bool 
 vizinhosDiferentes [] = True
-vizinhosDiferentes [_] = True 
-vizinhosDiferentes (x:xs) = x /= head xs
-
+vizinhosDiferentes [_] = True
+vizinhosDiferentes (x:xs)
+    | (x /= head xs) = vizinhosDiferentes xs 
+    | otherwise = False
+  
 --verifica se a região segue a ordem decrescente na vertical (incompleta, falar com o professor)
 ordemDecrescente :: [a] -> Bool 
 ordemDecrescente [] = True 
-ordemDecrescente [_] = True 
---ordemDecrescente (x:xs)
+ordemDecrescente [_] = True
+ordemDecrescente (x:xs)
+    | (x > head xs) = ordemDecrescente xs 
+    | otherwise = False
