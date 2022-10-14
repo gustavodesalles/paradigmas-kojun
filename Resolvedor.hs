@@ -39,4 +39,4 @@ collapse :: Matrix [a] -> [Matrix a]
 collapse = cp . map cp
 
 solve :: GradeValores -> GradeRegioes -> [GradeValores]
-solve valores regioes = filter (valido (collapse (choices)), regioes)
+solve valores regioes = filter (valido (collapse (choices)), regioes) -- TODO - passar parametro choices + testar

@@ -31,7 +31,7 @@ obterRegiaoEscolhida :: (Int, Char) -> Char
 obterRegiaoEscolhida (_, b) = b
 
 --obtém valor numérico da tupla
-obterValorEscolhido :: (Int, Char) -> Char
+obterValorEscolhido :: (Int, Char) -> Int
 obterValorEscolhido (a, _) = a
 
 --obtém as colunas da matriz por meio de transposição
